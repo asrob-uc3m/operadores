@@ -10,7 +10,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 @begin.start(auto_convert=True)
 @begin.logging
-def start(output_file= os.path.join(os.path.split(__file__)[0],'website', 'index.html')):
+def start(output_file: 'Select website directory to write index.html'=os.path.join(os.path.split(__file__)[0],'website', 'index.html')):
     #### Get current time
     time_string_github_style=str(gmtime().tm_year-1)+(strftime("-%m-%dT%H:%M:%SZ", gmtime()))
     #logging.debug(time_string_github_style)
@@ -18,7 +18,6 @@ def start(output_file= os.path.join(os.path.split(__file__)[0],'website', 'index
     ### This parts get the data from GitHub
 
     ## Generate a dict of all issues
-    closed_issues_dict = {}
     closed_issues_dict = dict()
 
     general_url="https://api.github.com/repos/asrob-uc3m/operadores/issues{}"
@@ -63,11 +62,9 @@ def start(output_file= os.path.join(os.path.split(__file__)[0],'website', 'index
 
     sorted_closed_issues = sorted(closed_issues_dict.items(), key=lambda x: x[1]['closed_at'], reverse=False)
 
-    unsorted_operators = {}
     unsorted_operators = dict()
     
     ### Generate a dict of operators
-
     ## Operator with login asrobuc3m is always authorized
 
     operator=dict()
@@ -119,7 +116,6 @@ def start(output_file= os.path.join(os.path.split(__file__)[0],'website', 'index
         
         # If trainer is in the operator list
         try:
-            unsorted_operators[issue_data['closed_by']['login']]
             # If trainer doesn't have error
             if unsorted_operators[issue_data['closed_by']['login']]['authorized'] != -1:
                 # If new_operator(formed_date) > trainer(formed_date)
@@ -180,9 +176,6 @@ def start(output_file= os.path.join(os.path.split(__file__)[0],'website', 'index
             'username':operator_data['username'],
             'img_url':operator_data['img_url'],
             'formed':operator_data['n_of_operators_formed']})
-
-    
-    
 
     ### Generate the website using the template
     env = Environment(loader=FileSystemLoader(os.path.join(os.path.split(__file__)[0],'templates')),
