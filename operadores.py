@@ -1,6 +1,7 @@
 import os
 import json
 from time import gmtime, strftime
+import logging
 
 import begin
 import requests
@@ -12,7 +13,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 def start(output_file= os.path.join(os.path.split(__file__)[0],'website', 'index.html')):
     #### Get current time
     time_string_github_style=str(gmtime().tm_year-1)+(strftime("-%m-%dT%H:%M:%SZ", gmtime()))
-    #print time_string_github_style
+    #logging.debug(time_string_github_style)
     
     ### This parts get the data from GitHub
 
@@ -23,7 +24,7 @@ def start(output_file= os.path.join(os.path.split(__file__)[0],'website', 'index
     general_url="https://api.github.com/repos/asrob-uc3m/operadores/issues{}"
     retrieve_all_condition="?state=all"
 
-    print general_url.format(retrieve_all_condition)
+    logging.debug(general_url.format(retrieve_all_condition))
         
     response = requests.get(general_url.format(retrieve_all_condition))
     all_issues_obj=json.loads(response.text)
@@ -35,13 +36,13 @@ def start(output_file= os.path.join(os.path.split(__file__)[0],'website', 'index
     for issue_number in range(1, total_n_of_issues+1):
         try:
             response = requests.get(general_url.format("/" + str(issue_number)))
-            #print general_url.format("/" + str(issue_number))
+            #logging.debug(general_url.format("/" + str(issue_number)))
             issue_obj=json.loads(response.text)
-            print issue_number
+            logging.info(issue_number)
             issue=dict()
             issue['state'] = issue_obj['state']
             if issue['state'] == "open":
-                print "____is open"
+                logging.info("____is open")
                 continue
         
             issue['created_by'] = issue_obj['user']
@@ -56,8 +57,8 @@ def start(output_file= os.path.join(os.path.split(__file__)[0],'website', 'index
             closed_issues_dict[issue_number] = issue
 
         except KeyError:
-            print issue_number
-            print "____is error"
+            logging.info(issue_number)
+            logging.info("____is error")
             pass
 
     sorted_closed_issues = sorted(closed_issues_dict.items(), key=lambda x: x[1]['closed_at'], reverse=False)
@@ -81,17 +82,17 @@ def start(output_file= os.path.join(os.path.split(__file__)[0],'website', 'index
     
     ## Retrieve the list of operators from the issues, getting the latest update for each one
     for issue, issue_data in sorted_closed_issues:
-        print "Issue #" + str(issue) + " closed at " + issue_data['closed_at']
+        logging.info("Issue #" + str(issue) + " closed at " + issue_data['closed_at'])
         
         # only compute closed issues
         if issue_data['state'] == "open":
-            print "____is open"
+            logging.info("____is open")
             continue
 
         # only compute correctly labeled issues
         continue_flag = 1
         for label in issue_data['labels']:
-            #print label
+            #logging.debug(label)
             if label['name'] == "training request":
                 continue_flag=0
             if label['name'] == "renewal request":
