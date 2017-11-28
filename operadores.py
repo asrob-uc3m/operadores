@@ -187,4 +187,4 @@ def start(output_file: 'Select website directory to write index.html'=os.path.jo
 
     ## Only thing left is to save the rendered template
     with open(output_file, 'w') as f:
-        f.write(html.encode('utf-8'))
+        f.write(html)
