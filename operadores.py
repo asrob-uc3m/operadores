@@ -146,10 +146,10 @@ def start(output_file= os.path.join(os.path.split(__file__)[0],'website', 'index
         # add operator to the dict       
         unsorted_operators[issue_data['created_by']['login']] = operator
 
-        
+    ##Put the operators in order
     sorted_operators = sorted(unsorted_operators.items(), key=lambda x: x[1]['raw_formed_date'], reverse=True)
 
-    #Put the operators data in the required format
+    ###Put the operators data in the required format
     sorted_auth_operators = []
     sorted_old_operators = []
     sorted_err_operators = []
@@ -183,7 +183,7 @@ def start(output_file= os.path.join(os.path.split(__file__)[0],'website', 'index
     
     
 
-    # Generate the website using the template
+    ### Generate the website using the template
     env = Environment(loader=FileSystemLoader(os.path.join(os.path.split(__file__)[0],'templates')),
                       autoescape=select_autoescape(['html', 'xml']))
     template = env.get_template('index.html')
@@ -191,6 +191,6 @@ def start(output_file= os.path.join(os.path.split(__file__)[0],'website', 'index
                            olds=sorted_old_operators,
                            errs=sorted_err_operators)
 
-    # Only thing left is to save the rendered template
+    ## Only thing left is to save the rendered template
     with open(output_file, 'w') as f:
         f.write(html.encode('utf-8'))
