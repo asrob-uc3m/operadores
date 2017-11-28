@@ -45,16 +45,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#about">Información básica</a>
-                    </li>
-                    <li>
-                        <a href="#auth">Operadores autorizados</a>
-                    </li>
-                    <li>
-                        <a href="#old">Antiguos operadores</a>
-                    </li>
-                    <li>
-                        <a href="#err">Necesitan validación</a>
+                        <a href="http://asrob.uc3m.es/printers">Información básica</a>
                     </li>
                 </ul>
             </div>
@@ -79,7 +70,7 @@
 
 		<hr class="featurette-divider" id="about">
 		<div class="page-header">
-			<h1>Información básica</h1>
+			<h1>Gestión de operadores</h1>
 			<p class="lead">Las siguientes personas tienen, o han tenido, acceso a las Impresoras 3D</p>
 		</div>
 	</div>
@@ -102,7 +93,7 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="auth">
                             <div class="page-header">
-                              <h1>Operadores autorizados<small>(Pueden utilizar las impresoras 3D)</small></h1>
+                              <h1>Operadores autorizados<br><small>(Pueden utilizar las impresoras 3D)</small></h1>
                             </div>
                              <table class="table table-striped" style="width:100%">
                                 <thead class="thead-inverse">
@@ -115,10 +106,17 @@
                                 </thead>
                                 <tbody>
                                 
+                                        <td><a href="https://api.github.com/repos/asrob-uc3m/operadores/issues/6">2017-11-28T19:13:46Z</a></td>
+                                        <td><img src="https://avatars0.githubusercontent.com/u/29423648?v=4" width="50px"></td>
+                                        <td><a href="https://github.com/davidvelascogarcia">davidvelascogarcia</a></td>
+                                        <td>0</td>
+                                    </tr>
+                                    
+                                 
                                         <td><a href="https://api.github.com/repos/asrob-uc3m/operadores/issues/5">2017-11-28T15:27:50Z</a></td>
                                         <td><img src="https://avatars1.githubusercontent.com/u/4448588?v=4" width="50px"></td>
                                         <td><a href="https://github.com/jgvictores">jgvictores</a></td>
-                                        <td>0</td>
+                                        <td>1</td>
                                     </tr>
                                     
                                  
@@ -141,7 +139,7 @@
                         </div>
                         <div role="tabpanel" class="tab-pane" id="old">
                             <div class="page-header">
-                              <h1>Antiguos operadores<small>(Ya no están autorizados a utilizar las impresoras 3D)</small></h1>
+                              <h1>Antiguos operadores<small><br>(Ya no están autorizados a utilizar las impresoras 3D)</small></h1>
                             </div>
                              <table class="table table-striped" align="center" style="width:100%">
                                 <thead class="thead-inverse">
@@ -159,7 +157,7 @@
                         </div>
 						<div role="tabpanel" class="tab-pane" id="err">
                             <div class="page-header">
-                              <h1>Necesitan validación<small>(El algoritmo ha detectado un error en el proceso de formación)</small></h1>
+                              <h1>Necesitan validación<small><br>(El algoritmo ha detectado un error en el proceso de formación)</small></h1>
                             </div>
                              <table class="table table-striped" align="center" style="width:100%">
                                 <thead class="thead-inverse">
@@ -181,6 +179,18 @@
             </div>
         </div>
         <!-- /.row -->
+
+        <hr class="featurette-divider">
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Si has detectado algún error en la página o tienes alguna sugerencia, ayúdanos a mejorar, poniendo una incidencia <a href="https://github.com/asrob-uc3m/operadores/issues">aquí</a>.</p>
+                    <p>Based on the <a href="http://startbootstrap.com/template-overviews/one-page-wonder/">One Page Wonder template</a>  &copy; ASROB 2017</p>
+                </div>
+            </div>
+        </footer>
 
     </div>
     <!-- /.container -->
