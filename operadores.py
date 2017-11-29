@@ -51,7 +51,7 @@ def start(output_file: 'Select website directory to write index.html'=os.path.jo
             issue['labels'] = issue_obj['labels']
             issue['assignee'] = issue_obj['assignee']
             issue['assignees'] = issue_obj['assignees']
-            issue['issue_url'] = issue_obj['url']
+            issue['issue_url'] = issue_obj['html_url']
 
             closed_issues_dict[issue_number] = issue
 
