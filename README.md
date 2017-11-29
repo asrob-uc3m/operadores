@@ -1,4 +1,5 @@
-# Operadores
+# Printers Operators Page
+
 Gestión de operadores autorizados a utilizar las impresoras 3D
 
 ## ¿Cómo convertirse en operador?
@@ -14,3 +15,23 @@ El requisito para poder imprimir en BLACKY o en HIJA RESURRECTION es que tienes 
 1. Podrás imprimir tú sólo las próximas veces.
 2. Podrás formar a otros operadores si lo deseas.
 3. Podrás aparecer en la [lista de operadores](http://asrob.uc3m.es/index.php/Operadores). En la cual deberás añadirte al final de la lista proporcionando tu fotografía, tu nombre y apellidos y un correo electrónico (preferiblemente el de la UC3M).
+
+# About
+
+Automatic generation of printer operators page based on [Jinja2](http://jinja.pocoo.org/docs/2.9/) templates and [GitHub issues](https://github.com/asrob-uc3m/operadores/issues/).
+
+Author: [Manuel Peña](https://github.com/Siotma)
+
+# Usage
+
+1. Install dependencies: `pip install -r requirements.txt`.
+2. Copy the `website` and `template` folder to the corresponding directory in your website server.
+3. Run the generate script with the path of the index.html file to write: `python generate.py -o path/to/website/index.html`.
+
+You will have to schedule the execution of generate.py in order to have an updated webpage. 
+
+# Attributions
+
+* [Bootstrap](http://getbootstrap.com/).
+* Based on the [One Page Wonder template](http://startbootstrap.com/template-overviews/one-page-wonder/).
+* [David-Estevez](https://github.com/David-Estevez)
