@@ -26,12 +26,12 @@ Author: [Manuel Peña](https://github.com/Siotma)
 
 1. Install dependencies: `pip install -r requirements.txt`.
 2. Copy the `website` and `template` folder to the corresponding directory in your website server.
-3. Run the generate script with the path of the index.html file to write: `python generate.py -o path/to/website/index.html`.
+3. Run the generate script with the path of the index.html file to write: `python operadores.py -o path/to/website/index.html`.
 
-You will have to schedule the execution of generate.py in order to have an updated webpage. 
+You will have to schedule the execution of operadores.py in order to have an updated webpage. 
 
 # Attributions
 
 * [Bootstrap](http://getbootstrap.com/).
 * Based on the [One Page Wonder template](http://startbootstrap.com/template-overviews/one-page-wonder/).
-* [David-Estevez](https://github.com/David-Estevez)
+* [Printer Status Webpage](https://github.com/asrob-uc3m/printers-status-webpage) by [David-Estevez](https://github.com/David-Estevez)
