@@ -1,26 +1,16 @@
 # Printers Operators Page
 
-Gestión de operadores autorizados a utilizar las impresoras 3D
+Gestión de operadores autorizados a utilizar las impresoras 3D. Más información [en la web](http://asrob.uc3m.es/printers/operators.html)
 
-## ¿Cómo convertirse en operador?
-
-El requisito para poder imprimir en BLACKY o en HIJA RESURRECTION es que tienes que ser operador. Para ello:
-
-- Tienes que abrir una issue en este repositorio indicando que deseas convertirte en operador. Alguno de los [operadores autorizados](http://asrob.uc3m.es/printers/operators.html) se pondrá en contacto contigo respondiendo la issue y que te enseñará a imprimir. Para ello, seguiremos la metodología Maestro-Aprendiz. Nota: para publicar issues debes tener una cuenta en GitHub; puedes abrir una fácilmente.
-
-- Cuando hayas impreso al menos 3 piezas de forma independiente bajo la supervisión del operador responsable a tu cargo, te convertirás en uno de ellos.
-
-- Una vez seas operador:
-
-1. Podrás imprimir tú sólo las próximas veces.
-2. Podrás formar a otros operadores si lo deseas.
-3. Aparecerás en la [lista de operadores](http://asrob.uc3m.es/printers/operators.html). En la cual serás añadido automáticamente una vez tu formador haya cerrado la issue de tu formación.
+3D Printers authorized operators management. More info [here](http://asrob.uc3m.es/printers/operators.html)
 
 # About
 
 Automatic generation of printer operators page based on [Jinja2](http://jinja.pocoo.org/docs/2.9/) templates and [GitHub issues](https://github.com/asrob-uc3m/operadores/issues/).
 
 Author: [Manuel Peña](https://github.com/Siotma)
+
+Demo [here](http://asrob.uc3m.es/printers/operators.html)
 
 # Usage
 
