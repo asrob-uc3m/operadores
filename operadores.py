@@ -10,12 +10,15 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 @begin.start(auto_convert=True)
 @begin.logging
-def start(output_file: 'Select website directory to write index.html'=os.path.join(os.path.split(__file__)[0],'website', 'index.html')):
+def start(output_file: 'Select website directory to write index.html'=os.path.join(os.path.split(__file__)[0],'website', 'index.html'),
+          token: 'Authentication token for GitHub API'=''):
     #### Get current time
     time_string_github_style=str(gmtime().tm_year-1)+(strftime("-%m-%dT%H:%M:%SZ", gmtime()))
     #logging.debug(time_string_github_style)
     
     ### This parts get the data from GitHub
+
+    params = {'access_token':token}
 
     ## Generate a dict of all issues
     closed_issues_dict = dict()
@@ -25,7 +28,7 @@ def start(output_file: 'Select website directory to write index.html'=os.path.jo
 
     logging.debug(general_url.format(retrieve_all_condition))
         
-    response = requests.get(general_url.format(retrieve_all_condition))
+    response = requests.get(general_url.format(retrieve_all_condition), params=params)
     all_issues_obj=json.loads(response.text)
 
     ## Get total number of issues
@@ -34,7 +37,7 @@ def start(output_file: 'Select website directory to write index.html'=os.path.jo
     ## Generate the dict
     for issue_number in range(1, total_n_of_issues+1):
         try:
-            response = requests.get(general_url.format("/" + str(issue_number)))
+            response = requests.get(general_url.format("/" + str(issue_number)), params=params)
             #logging.debug(general_url.format("/" + str(issue_number)))
             issue_obj=json.loads(response.text)
             logging.info(issue_number)
