@@ -186,7 +186,9 @@ def start(output_file: 'Select website directory to write index.html'=os.path.jo
     template = env.get_template('index.html')
     html = template.render(auths=sorted_auth_operators,
                            olds=sorted_old_operators,
-                           errs=sorted_err_operators)
+                           errs=sorted_err_operators,
+                           date=strftime("%d/%m/%Y", gmtime()),
+                           time=strftime("%H:%M", gmtime()))
 
     ## Only thing left is to save the rendered template
     with open(output_file, 'w') as f:
