@@ -1,8 +1,8 @@
 # Printers Operators Page
 
-Gestión de operadores autorizados a utilizar las impresoras 3D. Más información [en la web](http://asrob.uc3m.es/printers/operators.html)
+Gestión de operadores autorizados a utilizar las impresoras 3D. Más información [en la web](http://wiki.asrob.uc3m.es/printers/operators.html)
 
-3D Printers authorized operators management. More info [here](http://asrob.uc3m.es/printers/operators.html)
+3D Printers authorized operators management. More info [here](http://wiki.asrob.uc3m.es/printers/operators.html)
 
 # About
 
@@ -10,7 +10,7 @@ Automatic generation of printer operators page based on [Jinja2](http://jinja.po
 
 Author: [Manuel Peña](https://github.com/Siotma)
 
-Demo [here](http://asrob.uc3m.es/printers/operators.html)
+Demo [here](http://wiki.asrob.uc3m.es/printers/operators.html)
 
 # Usage
 
