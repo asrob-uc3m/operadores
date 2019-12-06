@@ -87,6 +87,19 @@ def start(output_file: 'Select website directory to write index.html'=os.path.jo
      operator['username'] = "GioSunrider"
      operator['img_url'] = issue_data['created_by']['avatar_url']
      operator['n_of_operators_formed'] = 0
+     operator['authorized'] = 1 #Always
+     operator['formed_in_issue_url'] = issue_data['issue_url']
+     operator['msg'] = "No message"
+     unsorted_operators[operator['username']] = operator
+
+     ## Operator in charge of printers group is always authorized
+
+     operator=dict()
+     operator['raw_formed_date'] = issue_data['closed_at']
+     operator['username'] = "MrTommyGuns"
+     operator['img_url'] = issue_data['created_by']['avatar_url']
+     operator['n_of_operators_formed'] = 0
+     operator['authorized'] = 1 #Always
      operator['formed_in_issue_url'] = issue_data['issue_url']
      operator['msg'] = "No message"
      unsorted_operators[operator['username']] = operator
