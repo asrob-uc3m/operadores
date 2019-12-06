@@ -79,6 +79,17 @@ def start(output_file: 'Select website directory to write index.html'=os.path.jo
     operator['authorized'] = 1 #Always
     operator['msg'] = "User with login asrobuc3m is always authorized"
     unsorted_operators[operator['username']] = operator
+          
+     ## Operator in charge of printers is always authorized
+
+     operator=dict()
+     operator['raw_formed_date'] = issue_data['closed_at']
+     operator['username'] = "GioSunrider"
+     operator['img_url'] = issue_data['created_by']['avatar_url']
+     operator['n_of_operators_formed'] = 0
+     operator['formed_in_issue_url'] = issue_data['issue_url']
+     operator['msg'] = "No message"
+     unsorted_operators[operator['username']] = operator
     
     ## Retrieve the list of operators from the issues, getting the latest update for each one
     for issue, issue_data in sorted_closed_issues:
