@@ -15,7 +15,7 @@ def start(output_file: 'Select website directory to write index.html'=os.path.jo
     #### Get current time
     time_string_github_style=str(gmtime().tm_year-1)+(strftime("-%m-%dT%H:%M:%SZ", gmtime()))
     #logging.debug(time_string_github_style)
-    
+
     ### This parts get the data from GitHub
 
     params = {'access_token':token}
@@ -27,13 +27,13 @@ def start(output_file: 'Select website directory to write index.html'=os.path.jo
     retrieve_all_condition="?state=all"
 
     logging.debug(general_url.format(retrieve_all_condition))
-        
+
     response = requests.get(general_url.format(retrieve_all_condition), params=params)
     all_issues_obj=json.loads(response.text)
 
     ## Get total number of issues
     total_n_of_issues=all_issues_obj[0]['number']
-    
+
     ## Generate the dict
     for issue_number in range(1, total_n_of_issues+1):
         try:
@@ -46,7 +46,7 @@ def start(output_file: 'Select website directory to write index.html'=os.path.jo
             if issue['state'] == "open":
                 logging.info("____is open")
                 continue
-        
+
             issue['created_by'] = issue_obj['user']
             issue['created_at'] = issue_obj['created_at']
             issue['closed_by'] = issue_obj['closed_by']
@@ -66,7 +66,7 @@ def start(output_file: 'Select website directory to write index.html'=os.path.jo
     sorted_closed_issues = sorted(closed_issues_dict.items(), key=lambda x: x[1]['closed_at'], reverse=False)
 
     unsorted_operators = dict()
-    
+
     ### Generate a dict of operators
     ## Operator with login asrobuc3m is always authorized
 
@@ -74,16 +74,16 @@ def start(output_file: 'Select website directory to write index.html'=os.path.jo
     operator['raw_formed_date'] = "2011-06-03T09:00:00Z" # Arrival of MADRE
     operator['formed_in_issue_url'] = "http://www.reprap.org/wiki/Clone_Wars:_historia/es"
     operator['username'] = "asrobuc3m"
-    operator['img_url'] = "http://asrob.uc3m.es/images/thumb/3/33/Logo_oficial.png/225px-Logo_oficial.png"
+    operator['img_url'] = "https://apps-robots.uc3m.es/asrob/w/images/thumb/3/33/Logo_oficial.png/225px-Logo_oficial.png"
     operator['n_of_operators_formed'] = 0
     operator['authorized'] = 1 #Always
     operator['msg'] = "User with login asrobuc3m is always authorized"
     unsorted_operators[operator['username']] = operator
-    
+
     ## Retrieve the list of operators from the issues, getting the latest update for each one
     for issue, issue_data in sorted_closed_issues:
         logging.info("Issue #" + str(issue) + " closed at " + issue_data['closed_at'])
-        
+
         # only compute closed issues
         if issue_data['state'] == "open":
             logging.info("____is open")
@@ -107,8 +107,8 @@ def start(output_file: 'Select website directory to write index.html'=os.path.jo
         except KeyError:
             # First appearance for this operator
             pass
-        
-        # collect data 
+
+        # collect data
         operator=dict()
         operator['raw_formed_date'] = issue_data['closed_at']
         operator['username'] = issue_data['created_by']['login']
@@ -116,14 +116,14 @@ def start(output_file: 'Select website directory to write index.html'=os.path.jo
         operator['n_of_operators_formed'] = 0
         operator['formed_in_issue_url'] = issue_data['issue_url']
         operator['msg'] = "No message"
-        
+
         # If trainer is in the operator list
         try:
             # If trainer doesn't have error
             if unsorted_operators[issue_data['closed_by']['login']]['authorized'] != -1:
                 # If new_operator(formed_date) > trainer(formed_date)
                 if operator['raw_formed_date'] > unsorted_operators[issue_data['closed_by']['login']]['raw_formed_date']:
-                    unsorted_operators[issue_data['closed_by']['login']]['n_of_operators_formed'] += 1 
+                    unsorted_operators[issue_data['closed_by']['login']]['n_of_operators_formed'] += 1
                     # If new_operator(formed_date) nearest than one year
                     if operator['raw_formed_date'] > time_string_github_style:
                         operator['authorized'] = 1
@@ -141,9 +141,9 @@ def start(output_file: 'Select website directory to write index.html'=os.path.jo
             operator['msg'] = "No hay constancia de que el formador de este operador sea o haya sido operador"
             operator['authorized'] = -1
             pass
-            
 
-        # add operator to the dict       
+
+        # add operator to the dict
         unsorted_operators[issue_data['created_by']['login']] = operator
 
     ##Put the operators in order
@@ -153,7 +153,7 @@ def start(output_file: 'Select website directory to write index.html'=os.path.jo
     sorted_auth_operators = []
     sorted_old_operators = []
     sorted_err_operators = []
-    
+
     for operator, operator_data in sorted_operators:
         if operator_data['authorized'] == 1:
         # Make the authorized operators list
